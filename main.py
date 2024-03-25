@@ -4,12 +4,17 @@ import sqlite3
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.utils import executor
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+TOKEN = config['Token']['Token']
 
 # Установка уровня логгирования (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 logging.basicConfig(level=logging.INFO)
 
 # Инициализация бота и диспетчера
-bot = Bot(token="YOUR_TELEGRAM_BOT_TOKEN")
+bot = Bot(token="TOKEN")
 dp = Dispatcher(bot)
 dp.middleware.setup(LoggingMiddleware())
 
